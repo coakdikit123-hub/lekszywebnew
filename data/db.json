@@ -1,0 +1,110 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "type": "netflix",
+      "name": "Netflix Premium 1 Hari 1 User",
+      "price": "Rp 3.000",
+      "priceValue": 3000,
+      "img": "/gambar/netflix.png",
+      "hot": true,
+      "new": false
+    },
+    {
+      "id": 2,
+      "type": "netflix",
+      "name": "Netflix Premium 7 Hari 1 User",
+      "price": "Rp 8.000",
+      "priceValue": 8000,
+      "img": "/gambar/netflix.png",
+      "hot": false,
+      "new": false
+    },
+    {
+      "id": 3,
+      "type": "netflix",
+      "name": "Netflix Premium 30 Hari 1 User",
+      "price": "Rp 20.000",
+      "priceValue": 20000,
+      "img": "/gambar/netflix.png",
+      "hot": true,
+      "new": false
+    },
+    {
+      "id": 15,
+      "type": "alight",
+      "name": "Alight Motion Premium 1 Tahun",
+      "price": "Rp 3.000",
+      "priceValue": 3000,
+      "img": "/gambar/alight.png",
+      "hot": false,
+      "new": false
+    },
+    {
+      "id": 16,
+      "type": "canva",
+      "name": "Canva Pro Designer 1 Bulan",
+      "price": "Rp 3.000",
+      "priceValue": 3000,
+      "img": "/gambar/canva.png",
+      "hot": false,
+      "new": false
+    },
+    {
+      "id": 17,
+      "type": "canva",
+      "name": "Canva Pro Designer Lifetime",
+      "price": "Rp 6.000",
+      "priceValue": 6000,
+      "img": "/gambar/canva.png",
+      "hot": true,
+      "new": false
+    },
+    {
+      "id": 20,
+      "type": "spotify",
+      "name": "Spotify Premium Individual 1 Bulan",
+      "price": "Rp 12.000",
+      "priceValue": 12000,
+      "img": "/gambar/spotify.png",
+      "hot": false,
+      "new": false
+    },
+    {
+      "id": 27,
+      "type": "youtube",
+      "name": "Youtube Premium Family 1 Bulan",
+      "price": "Rp 3.000",
+      "priceValue": 3000,
+      "img": "/gambar/youtube.png",
+      "hot": true,
+      "new": false
+    }
+  ],
+  "config": {
+    "storeName": "LekszyStore",
+    "whatsappNumber": "6285810630431",
+    "whatsappMessage": "Halo Admin *LekszyStore*\nSaya ingin konfirmasi pembelian:\n\n*📦 Produk*: {product}\n*💰 Harga:* {price}\n*🆔 ID Transaksi*: {trx}\n\nBerikut bukti pembayaran yang telah saya lakukan:",
+    "qrisImage": "/gambar/qris.jpeg",
+    "stats": {
+      "orders": 200,
+      "customers": 200,
+      "legal": 100
+    },
+    "heroBanner": "/gambar/banner.png",
+    "logo": "/gambar/logo.png"
+  },
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "$2a$10$YourHashedPasswordHere",
+      "role": "superadmin"
+    }
+  ],
+  "settings": {
+    "sessionTimeout": 3600,
+    "allowRegistration": false,
+    "maintenanceMode": false
+  }
+}
