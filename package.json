@@ -1,19 +1,17 @@
 {
-  "name": "lekszystore-admin",
+  "name": "lekszystore",
   "version": "1.0.0",
-  "description": "Admin Panel untuk LekszyStore",
-  "main": "index.js",
+  "description": "LekszyStore dengan Admin Panel",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Building...'"
+    "build": "echo 'Build completed'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "vercel": "^32.5.0"
