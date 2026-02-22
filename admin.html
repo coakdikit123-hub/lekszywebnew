@@ -30,12 +30,18 @@
 
         /* Login Page */
         .login-container {
-            max-width: 400px;
-            margin: 100px auto;
+            max-width: 420px;
+            margin: 80px auto;
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .login-header {
@@ -49,6 +55,12 @@
             -webkit-text-fill-color: transparent;
             font-weight: 800;
             font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.9rem;
         }
 
         .login-header img {
@@ -57,6 +69,7 @@
             border-radius: 20px;
             margin-bottom: 15px;
             object-fit: cover;
+            border: 3px solid #667eea;
         }
 
         .form-group {
@@ -68,13 +81,19 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            color: #667eea;
+            margin-right: 5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 16px;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s;
         }
@@ -82,25 +101,50 @@
         .form-group input:focus {
             border-color: #667eea;
             outline: none;
-            box-shadow: 0 0 10px rgba(102,126,234,0.2);
+            box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+        }
+
+        .form-group input.error {
+            border-color: #ef4444;
         }
 
         .btn-login {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-login i {
+            font-size: 1.1rem;
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #999;
         }
 
         /* Admin Panel */
@@ -108,8 +152,14 @@
             background: white;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .admin-header {
@@ -119,6 +169,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .admin-header h1 {
@@ -144,6 +196,9 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-logout:hover {
@@ -154,21 +209,26 @@
             background: #f8f9fa;
             padding: 15px 30px;
             border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
         }
 
         .nav-tabs {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
+            min-width: min-content;
         }
 
         .nav-tab {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             color: #666;
             transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-tab:hover {
@@ -199,9 +259,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
             gap: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .btn-add {
@@ -231,10 +299,16 @@
 
         .search-box input {
             width: 100%;
-            padding: 12px 15px 12px 40px;
+            padding: 12px 15px 12px 45px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #667eea;
+            outline: none;
         }
 
         .search-box i {
@@ -255,7 +329,7 @@
         .product-card {
             background: white;
             border: 1px solid #e0e0e0;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s;
             position: relative;
@@ -263,12 +337,12 @@
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .product-image {
             width: 100%;
-            height: 150px;
+            height: 160px;
             object-fit: cover;
             background: #f5f5f5;
         }
@@ -279,24 +353,26 @@
 
         .product-name {
             font-weight: 700;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            line-height: 1.3;
         }
 
         .product-price {
             color: #667eea;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
         .product-type {
             display: inline-block;
-            padding: 3px 8px;
+            padding: 4px 10px;
             background: #f0f0f0;
-            border-radius: 5px;
+            border-radius: 20px;
             font-size: 0.7rem;
-            margin-top: 5px;
             text-transform: capitalize;
+            font-weight: 600;
         }
 
         .product-actions {
@@ -314,8 +390,8 @@
         }
 
         .btn-icon {
-            width: 35px;
-            height: 35px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             border: none;
             background: white;
@@ -324,7 +400,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 1rem;
         }
 
         .btn-icon.edit:hover {
@@ -341,11 +418,14 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            padding: 4px 8px;
-            border-radius: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.7rem;
             font-weight: 700;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .badge.hot {
@@ -366,6 +446,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            backdrop-filter: blur(5px);
         }
 
         .modal.active {
@@ -374,35 +455,31 @@
 
         .modal-content {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             max-width: 500px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             padding: 30px;
-            animation: slideIn 0.3s ease;
+            animation: modalSlideIn 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .modal-header h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -410,9 +487,9 @@
         }
 
         .modal-close {
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             border: none;
             background: #f0f0f0;
             cursor: pointer;
@@ -425,27 +502,29 @@
         .modal-close:hover {
             background: #ef4444;
             color: white;
+            transform: rotate(90deg);
         }
 
         .form-row {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-row label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #333;
+            font-size: 0.9rem;
         }
 
         .form-row input,
         .form-row select,
         .form-row textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
             transition: all 0.3s;
         }
 
@@ -454,33 +533,49 @@
         .form-row textarea:focus {
             border-color: #667eea;
             outline: none;
+            box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
         }
 
         .checkbox-group {
             display: flex;
             gap: 20px;
-            align-items: center;
+            flex-wrap: wrap;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .checkbox-group label {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-weight: 400;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
             cursor: pointer;
         }
 
         .btn-save {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 700;
             cursor: pointer;
             margin-top: 20px;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
         }
 
         .btn-save:hover {
@@ -498,17 +593,19 @@
 
         .settings-card {
             background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 25px;
         }
 
         .settings-card h4 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #333;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 1.1rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
         }
 
         .preview-image {
@@ -517,7 +614,7 @@
             object-fit: cover;
             border-radius: 10px;
             margin-top: 10px;
-            border: 2px solid #e0e0e0;
+            border: 3px solid #e0e0e0;
             background: white;
         }
 
@@ -529,26 +626,30 @@
 
         .stats-input input {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
+            font-size: 1rem;
         }
 
         .stats-input span {
-            font-weight: 600;
+            font-weight: 700;
             color: #667eea;
+            font-size: 1.2rem;
         }
 
         /* Loading */
         .loading {
             text-align: center;
-            padding: 50px;
+            padding: 60px;
+            color: #666;
         }
 
         .loading i {
             font-size: 3rem;
             color: #667eea;
             animation: spin 1s linear infinite;
+            margin-bottom: 15px;
         }
 
         @keyframes spin {
@@ -556,31 +657,27 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Toast */
+        /* Toast Notification */
         .toast {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 15px 25px;
+            padding: 16px 25px;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
             z-index: 2000;
             display: none;
             animation: slideInRight 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 350px;
+            word-break: break-word;
         }
 
         @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .toast.error {
@@ -591,20 +688,65 @@
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
+        .toast.info {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .toast i {
+            margin-right: 8px;
+        }
+
+        /* Debug Panel */
+        .debug-panel {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .debug-panel.visible {
+            display: block;
+        }
+
+        .debug-panel .debug-title {
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .debug-panel .debug-line {
+            margin: 5px 0;
+            word-break: break-all;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            body { padding: 10px; }
+            
+            .login-container {
+                margin: 40px auto;
+                padding: 30px 20px;
+            }
+            
             .admin-header {
                 flex-direction: column;
-                gap: 15px;
                 text-align: center;
             }
             
-            .nav-tabs {
+            .user-info {
+                width: 100%;
                 justify-content: center;
             }
             
             .section-header {
                 flex-direction: column;
+                align-items: stretch;
             }
             
             .search-box {
@@ -612,32 +754,56 @@
             }
             
             .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .toast {
+                left: 20px;
+                right: 20px;
+                max-width: none;
             }
         }
     </style>
 </head>
-
-    <body>
+<body>
     <div class="container">
         <!-- Login Page -->
         <div id="loginPage" class="login-container">
             <div class="login-header">
-                <img src="gambar/logo.png" alt="Logo" id="loginLogo" onerror="this.src='https://via.placeholder.com/100'">
+                <img src="gambar/logo.png" alt="Logo" id="loginLogo" onerror="this.src='https://via.placeholder.com/100?text=Logo'">
                 <h2>LekszyStore Admin</h2>
                 <p>Masuk ke panel administrasi</p>
             </div>
-            <div class="form-group">
-                <label><i class="fas fa-user"></i> Username</label>
-                <input type="text" id="username" value="admin" placeholder="admin">
+            
+            <form id="loginForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="username" value="admin" placeholder="Masukkan username" autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                </div>
+                
+                <button type="button" class="btn-login" id="loginButton" onclick="handleLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>© 2026 LekszyStore. All rights reserved.</p>
             </div>
-            <div class="form-group">
-                <label><i class="fas fa-lock"></i> Password</label>
-                <input type="password" id="password" placeholder="••••••••">
+
+            <!-- Debug Panel (sembunyi, bisa dimunculkan dengan console) -->
+            <div id="debugPanel" class="debug-panel">
+                <div class="debug-title"><i class="fas fa-bug"></i> Debug Info:</div>
+                <div id="debugContent"></div>
             </div>
-            <button class="btn-login" onclick="handleLogin()">
-                <i class="fas fa-sign-in-alt"></i> Masuk
-            </button>
         </div>
 
         <!-- Admin Panel -->
@@ -654,16 +820,16 @@
 
             <div class="admin-nav">
                 <div class="nav-tabs">
-                    <div class="nav-tab active" onclick="switchTab('products')">
+                    <div class="nav-tab active" onclick="switchTab('products', this)">
                         <i class="fas fa-box"></i> Produk
                     </div>
-                    <div class="nav-tab" onclick="switchTab('settings')">
+                    <div class="nav-tab" onclick="switchTab('settings', this)">
                         <i class="fas fa-cog"></i> Pengaturan
                     </div>
-                    <div class="nav-tab" onclick="switchTab('stats')">
+                    <div class="nav-tab" onclick="switchTab('stats', this)">
                         <i class="fas fa-chart-bar"></i> Statistik
                     </div>
-                    <div class="nav-tab" onclick="switchTab('security')">
+                    <div class="nav-tab" onclick="switchTab('security', this)">
                         <i class="fas fa-shield-alt"></i> Keamanan
                     </div>
                 </div>
@@ -705,12 +871,12 @@
                             <div class="form-row">
                                 <label>Nomor WhatsApp</label>
                                 <input type="text" id="whatsappNumber" placeholder="6285810630431">
-                                <small>Contoh: 6285810630431 (tanpa +)</small>
+                                <small style="color: #666;">Contoh: 6285810630431 (tanpa + dan spasi)</small>
                             </div>
                             <div class="form-row">
                                 <label>Pesan WhatsApp</label>
                                 <textarea id="whatsappMessage" rows="4" placeholder="Template pesan..."></textarea>
-                                <small>Gunakan {product}, {price}, {trx} sebagai variable</small>
+                                <small style="color: #666;">Gunakan {product}, {price}, {trx} sebagai variable</small>
                             </div>
                             <button class="btn-save" onclick="saveStoreInfo()">
                                 <i class="fas fa-save"></i> Simpan Informasi
@@ -722,12 +888,12 @@
                             <div class="form-row">
                                 <label>Logo URL</label>
                                 <input type="text" id="logoUrl" placeholder="gambar/logo.png">
-                                <img id="logoPreview" class="preview-image" src="gambar/logo.png" alt="Preview">
+                                <img id="logoPreview" class="preview-image" src="gambar/logo.png" alt="Preview" onerror="this.src='https://via.placeholder.com/100?text=Logo'">
                             </div>
                             <div class="form-row">
                                 <label>Banner URL</label>
                                 <input type="text" id="bannerUrl" placeholder="gambar/banner.png">
-                                <img id="bannerPreview" class="preview-image" src="gambar/banner.png" alt="Preview">
+                                <img id="bannerPreview" class="preview-image" src="gambar/banner.png" alt="Preview" onerror="this.src='https://via.placeholder.com/300x100?text=Banner'">
                             </div>
                             <button class="btn-save" onclick="saveImages()">
                                 <i class="fas fa-save"></i> Simpan Gambar
@@ -739,7 +905,7 @@
                             <div class="form-row">
                                 <label>QRIS URL</label>
                                 <input type="text" id="qrisUrl" placeholder="gambar/qris.jpeg">
-                                <img id="qrisPreview" class="preview-image" src="gambar/qris.jpeg" alt="Preview">
+                                <img id="qrisPreview" class="preview-image" src="gambar/qris.jpeg" alt="Preview" onerror="this.src='https://via.placeholder.com/100?text=QRIS'">
                             </div>
                             <button class="btn-save" onclick="saveQRIS()">
                                 <i class="fas fa-save"></i> Simpan QRIS
@@ -778,7 +944,7 @@
                         </div>
                     </div>
                     
-                    <button class="btn-save" onclick="saveStats()">
+                    <button class="btn-save" onclick="saveStats()" style="max-width: 300px; margin: 20px auto 0;">
                         <i class="fas fa-chart-line"></i> Update Statistik
                     </button>
                 </div>
@@ -855,10 +1021,12 @@
                     <label>Status</label>
                     <div class="checkbox-group">
                         <label>
-                            <input type="checkbox" id="productHot"> <i class="fas fa-fire" style="color:#ff416c"></i> Terlaris (Hot)
+                            <input type="checkbox" id="productHot"> 
+                            <i class="fas fa-fire" style="color:#ff416c"></i> Terlaris (Hot)
                         </label>
                         <label>
-                            <input type="checkbox" id="productNew"> <i class="fas fa-star" style="color:#667eea"></i> Terbaru (New)
+                            <input type="checkbox" id="productNew"> 
+                            <i class="fas fa-star" style="color:#667eea"></i> Terbaru (New)
                         </label>
                     </div>
                 </div>
@@ -874,14 +1042,192 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        // API Configuration
+        // ==================== KONFIGURASI ====================
         const API_BASE = window.location.origin;
         let authToken = localStorage.getItem('adminToken');
         let products = [];
         let config = {};
 
-        // Check login status on load
+        // ==================== UTILITY FUNCTIONS ====================
+        function addDebugLog(message, data = null) {
+            const debugPanel = document.getElementById('debugPanel');
+            const debugContent = document.getElementById('debugContent');
+            
+            debugPanel.classList.add('visible');
+            
+            const timestamp = new Date().toLocaleTimeString();
+            let logLine = `[${timestamp}] ${message}`;
+            
+            if (data) {
+                logLine += `\nData: ${JSON.stringify(data, null, 2)}`;
+            }
+            
+            debugContent.innerHTML = `<div class="debug-line">${logLine}</div>` + debugContent.innerHTML;
+            
+            // Batasi jumlah log
+            if (debugContent.children.length > 10) {
+                debugContent.removeChild(debugContent.lastChild);
+            }
+            
+            console.log(message, data);
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            
+            // Ikon berdasarkan tipe
+            let icon = 'fas fa-check-circle';
+            if (type === 'error') icon = 'fas fa-exclamation-circle';
+            if (type === 'warning') icon = 'fas fa-exclamation-triangle';
+            if (type === 'info') icon = 'fas fa-info-circle';
+            
+            toast.innerHTML = `<i class="${icon}"></i> ${message}`;
+            toast.className = 'toast ' + type;
+            toast.style.display = 'block';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // ==================== LOGIN FUNCTIONS ====================
+        async function handleLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('loginButton');
+
+            // Validasi input
+            if (!username || !password) {
+                showToast('Username dan password harus diisi', 'error');
+                document.getElementById('username').classList.add('error');
+                document.getElementById('password').classList.add('error');
+                return;
+            }
+
+            // Disable button selama proses login
+            loginButton.disabled = true;
+            loginButton.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sedang login...';
+            
+            // Reset error state
+            document.getElementById('username').classList.remove('error');
+            document.getElementById('password').classList.remove('error');
+
+            addDebugLog('Mencoba login dengan username:', username);
+
+            try {
+                // Cek koneksi ke server dulu
+                addDebugLog('Mengecek koneksi ke server...');
+                
+                // Coba fetch dengan timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 detik timeout
+
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+                
+                addDebugLog('Response status:', response.status);
+                addDebugLog('Response headers:', Object.fromEntries([...response.headers]));
+
+                // Cek content type
+                const contentType = response.headers.get('content-type');
+                addDebugLog('Content-Type:', contentType);
+
+                if (!contentType || !contentType.includes('application/json')) {
+                    // Bukan JSON, ambil sebagai text untuk debug
+                    const textResponse = await response.text();
+                    addDebugLog('Response text (bukan JSON):', textResponse.substring(0, 500));
+                    
+                    if (textResponse.includes('404') || textResponse.includes('Not Found')) {
+                        throw new Error('API endpoint tidak ditemukan. Pastikan server sudah benar.');
+                    } else if (textResponse.includes('<!DOCTYPE')) {
+                        throw new Error('Server mengembalikan halaman HTML, bukan API. Cek routing Vercel.');
+                    } else {
+                        throw new Error('Server mengembalikan response yang tidak valid');
+                    }
+                }
+
+                // Parse JSON response
+                const data = await response.json();
+                addDebugLog('Response data:', data);
+
+                if (data.success) {
+                    authToken = data.token;
+                    localStorage.setItem('adminToken', authToken);
+                    
+                    showToast('Login berhasil!');
+                    
+                    // Tampilkan admin panel
+                    showAdminPanel();
+                    
+                    // Load data
+                    await Promise.all([
+                        loadProducts(),
+                        loadConfig()
+                    ]);
+                    
+                } else {
+                    throw new Error(data.message || 'Login gagal');
+                }
+
+            } catch (error) {
+                addDebugLog('Error:', error.message);
+                
+                if (error.name === 'AbortError') {
+                    showToast('Koneksi timeout. Server tidak merespons.', 'error');
+                } else if (error.message.includes('Failed to fetch')) {
+                    showToast('Tidak dapat terhubung ke server. Cek koneksi internet.', 'error');
+                } else {
+                    showToast(error.message, 'error');
+                }
+                
+                // Tandai input yang error
+                document.getElementById('username').classList.add('error');
+                document.getElementById('password').classList.add('error');
+                
+            } finally {
+                // Enable button kembali
+                loginButton.disabled = false;
+                loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+            }
+        }
+
+        // Test koneksi ke API
+        async function testAPIConnection() {
+            addDebugLog('Testing koneksi ke API...');
+            
+            try {
+                // Coba akses root API
+                const response = await fetch(`${API_BASE}/api/config`, {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                addDebugLog('Test API status:', response.status);
+                
+                const text = await response.text();
+                addDebugLog('Test API response:', text.substring(0, 200));
+                
+                return response.ok;
+                
+            } catch (error) {
+                addDebugLog('Test API error:', error.message);
+                return false;
+            }
+        }
+
+        // Panggil test koneksi saat halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
+            testAPIConnection();
+            
             if (authToken) {
                 verifyToken();
             }
@@ -896,6 +1242,10 @@
                     body: JSON.stringify({ token: authToken })
                 });
                 
+                if (!response.ok) {
+                    throw new Error('Token tidak valid');
+                }
+                
                 const data = await response.json();
                 if (data.success) {
                     showAdminPanel();
@@ -907,43 +1257,15 @@
                 }
             } catch (error) {
                 console.error('Token verification failed:', error);
+                localStorage.removeItem('adminToken');
+                authToken = null;
             }
         }
 
-        // Handle Login
-        async function handleLogin() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (!username || !password) {
-                showToast('Username dan password harus diisi', 'error');
-                return;
-            }
-
-            try {
-                showToast('Sedang login...', 'warning');
-                
-                const response = await fetch(`${API_BASE}/api/auth/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    authToken = data.token;
-                    localStorage.setItem('adminToken', authToken);
-                    showAdminPanel();
-                    loadProducts();
-                    loadConfig();
-                    showToast('Login berhasil!');
-                } else {
-                    showToast(data.message || 'Login gagal', 'error');
-                }
-            } catch (error) {
-                showToast('Terjadi kesalahan: ' + error.message, 'error');
-            }
+        // Show Admin Panel
+        function showAdminPanel() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
         }
 
         // Handle Logout
@@ -955,18 +1277,12 @@
             showToast('Berhasil keluar');
         }
 
-        // Show Admin Panel
-        function showAdminPanel() {
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-        }
-
         // Switch Tabs
-        function switchTab(tabName) {
+        function switchTab(tabName, element) {
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            event.target.classList.add('active');
+            element.classList.add('active');
 
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
@@ -974,23 +1290,30 @@
             document.getElementById(tabName + 'Tab').classList.add('active');
         }
 
-        // Load Products
+        // ==================== PRODUCT FUNCTIONS ====================
         async function loadProducts() {
             try {
                 const response = await fetch(`${API_BASE}/api/products`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
 
                 if (data.success) {
                     products = data.products || [];
                     renderProducts();
+                } else {
+                    showToast('Gagal memuat produk', 'error');
                 }
             } catch (error) {
                 console.error('Failed to load products:', error);
-                showToast('Gagal memuat produk', 'error');
+                showToast('Gagal memuat produk: ' + error.message, 'error');
+                document.getElementById('productGrid').innerHTML = '<p style="text-align: center; padding: 50px; color: #ef4444;">Gagal memuat produk. Cek koneksi server.</p>';
             }
         }
 
-        // Render Products
         function renderProducts() {
             const grid = document.getElementById('productGrid');
             
@@ -1012,14 +1335,14 @@
                         <div class="product-info">
                             <div class="product-name">${product.name}</div>
                             <div class="product-price">${product.price}</div>
-                            <span class="product-type">${product.type}</span>
+                            <span class="product-type"><i class="fas fa-tag"></i> ${product.type}</span>
                         </div>
                         
                         <div class="product-actions">
-                            <button class="btn-icon edit" onclick="openEditProductModal(${product.id})">
+                            <button class="btn-icon edit" onclick="openEditProductModal(${product.id})" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn-icon delete" onclick="deleteProduct(${product.id})">
+                            <button class="btn-icon delete" onclick="deleteProduct(${product.id})" title="Hapus">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -1030,7 +1353,6 @@
             grid.innerHTML = html;
         }
 
-        // Search Products
         function searchProducts() {
             const keyword = document.getElementById('searchProduct').value.toLowerCase();
             
@@ -1082,7 +1404,6 @@
             grid.innerHTML = html;
         }
 
-        // Open Add Product Modal
         function openAddProductModal() {
             document.getElementById('modalTitle').textContent = 'Tambah Produk';
             document.getElementById('productForm').reset();
@@ -1090,7 +1411,6 @@
             document.getElementById('productModal').classList.add('active');
         }
 
-        // Open Edit Product Modal
         function openEditProductModal(id) {
             const product = products.find(p => p.id === id);
             if (!product) return;
@@ -1101,7 +1421,7 @@
             document.getElementById('productType').value = product.type;
             
             // Extract numeric price
-            const priceValue = product.priceValue || parseInt(product.price.replace(/[^0-9]/g, ''));
+            const priceValue = product.priceValue || parseInt(product.price.replace(/[^0-9]/g, '')) || 0;
             document.getElementById('productPrice').value = priceValue;
             
             document.getElementById('productImage').value = product.img;
@@ -1111,7 +1431,6 @@
             document.getElementById('productModal').classList.add('active');
         }
 
-        // Save Product
         async function saveProduct(event) {
             event.preventDefault();
 
@@ -1147,6 +1466,10 @@
                     body: JSON.stringify(productData)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1157,11 +1480,11 @@
                     showToast(data.message || 'Gagal menyimpan produk', 'error');
                 }
             } catch (error) {
+                console.error('Save product error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Delete Product
         async function deleteProduct(id) {
             if (!confirm('Yakin ingin menghapus produk ini?')) return;
 
@@ -1173,6 +1496,10 @@
                     }
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1182,36 +1509,45 @@
                     showToast(data.message || 'Gagal menghapus produk', 'error');
                 }
             } catch (error) {
+                console.error('Delete product error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Close Modal
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
         }
 
-        // Load Config
+        // ==================== CONFIG FUNCTIONS ====================
         async function loadConfig() {
             try {
                 const response = await fetch(`${API_BASE}/api/config`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
 
                 if (data.success && data.config) {
                     config = data.config;
                     
+                    // Informasi Toko
                     document.getElementById('storeName').value = config.storeName || 'LekszyStore';
                     document.getElementById('whatsappNumber').value = config.whatsappNumber || '6285810630431';
                     document.getElementById('whatsappMessage').value = config.whatsappMessage || '';
                     
+                    // Gambar
                     document.getElementById('logoUrl').value = config.logo || 'gambar/logo.png';
                     document.getElementById('bannerUrl').value = config.heroBanner || 'gambar/banner.png';
                     document.getElementById('qrisUrl').value = config.qrisImage || 'gambar/qris.jpeg';
                     
+                    // Preview
                     document.getElementById('logoPreview').src = config.logo || 'gambar/logo.png';
                     document.getElementById('bannerPreview').src = config.heroBanner || 'gambar/banner.png';
                     document.getElementById('qrisPreview').src = config.qrisImage || 'gambar/qris.jpeg';
                     
+                    // Stats
                     if (config.stats) {
                         document.getElementById('ordersStat').value = config.stats.orders || 200;
                         document.getElementById('customersStat').value = config.stats.customers || 200;
@@ -1220,10 +1556,10 @@
                 }
             } catch (error) {
                 console.error('Failed to load config:', error);
+                showToast('Gagal memuat konfigurasi', 'error');
             }
         }
 
-        // Save Store Info
         async function saveStoreInfo() {
             const updatedConfig = {
                 storeName: document.getElementById('storeName').value,
@@ -1241,6 +1577,10 @@
                     body: JSON.stringify(updatedConfig)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1249,11 +1589,11 @@
                     showToast(data.message || 'Gagal menyimpan', 'error');
                 }
             } catch (error) {
+                console.error('Save config error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Save Images
         async function saveImages() {
             const updatedConfig = {
                 logo: document.getElementById('logoUrl').value,
@@ -1270,6 +1610,10 @@
                     body: JSON.stringify(updatedConfig)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1282,11 +1626,11 @@
                     showToast(data.message || 'Gagal menyimpan', 'error');
                 }
             } catch (error) {
+                console.error('Save images error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Save QRIS
         async function saveQRIS() {
             const updatedConfig = {
                 qrisImage: document.getElementById('qrisUrl').value
@@ -1302,6 +1646,10 @@
                     body: JSON.stringify(updatedConfig)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1311,11 +1659,11 @@
                     showToast(data.message || 'Gagal menyimpan', 'error');
                 }
             } catch (error) {
+                console.error('Save QRIS error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Save Stats
         async function saveStats() {
             const stats = {
                 orders: parseInt(document.getElementById('ordersStat').value) || 200,
@@ -1333,6 +1681,10 @@
                     body: JSON.stringify(stats)
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1341,11 +1693,12 @@
                     showToast(data.message || 'Gagal update', 'error');
                 }
             } catch (error) {
+                console.error('Save stats error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
         }
 
-        // Change Password
+        // ==================== SECURITY FUNCTIONS ====================
         async function changePassword() {
             const oldPassword = document.getElementById('oldPassword').value;
             const newPassword = document.getElementById('newPassword').value;
@@ -1376,6 +1729,10 @@
                     body: JSON.stringify({ oldPassword, newPassword })
                 });
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1387,20 +1744,9 @@
                     showToast(data.message || 'Gagal mengubah password', 'error');
                 }
             } catch (error) {
+                console.error('Change password error:', error);
                 showToast('Terjadi kesalahan: ' + error.message, 'error');
             }
-        }
-
-        // Show Toast
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast ' + type;
-            toast.style.display = 'block';
-
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
         }
 
         // Close modal when clicking outside
@@ -1410,6 +1756,14 @@
                 closeModal();
             }
         }
+
+        // Prevent form submission on enter in login form
+        document.getElementById('loginForm').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleLogin();
+            }
+        });
     </script>
 </body>
 </html>
