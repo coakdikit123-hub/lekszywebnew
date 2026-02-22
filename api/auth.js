@@ -4,13 +4,11 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
 
-  // Handle login
   if (req.method === 'POST') {
     try {
       // Parse body manual
@@ -21,11 +19,11 @@ module.exports = async (req, res) => {
       
       const { username, password } = JSON.parse(body);
       
-      // Hardcoded credentials
+      // Hardcoded credentials untuk test
       if (username === 'admin' && password === 'admin123') {
         res.status(200).json({
           success: true,
-          token: 'simple-token-123',
+          token: 'test-token-123',
           user: { username: 'admin', role: 'superadmin' }
         });
       } else {
@@ -41,9 +39,6 @@ module.exports = async (req, res) => {
       });
     }
   } else {
-    res.status(404).json({ 
-      success: false, 
-      message: 'Endpoint tidak ditemukan' 
-    });
+    res.status(404).json({ success: false, message: 'Not found' });
   }
 };
