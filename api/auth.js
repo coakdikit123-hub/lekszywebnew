@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   // Handle login
   if (req.method === 'POST') {
     try {
-      // Parse body
+      // Parse body manual
       let body = '';
       for await (const chunk of req) {
         body += chunk;
@@ -21,33 +21,23 @@ module.exports = async (req, res) => {
       
       const { username, password } = JSON.parse(body);
       
-      // Hardcoded credentials untuk testing
-      const ADMIN_USERNAME = 'admin';
-      const ADMIN_PASSWORD = 'admin123';
-      
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        // Generate simple token (jangan untuk production)
-        const token = Buffer.from(JSON.stringify({
-          username: 'admin',
-          role: 'superadmin',
-          exp: Date.now() + 7 * 24 * 60 * 60 * 1000
-        })).toString('base64');
-        
+      // Hardcoded credentials
+      if (username === 'admin' && password === 'admin123') {
         res.status(200).json({
           success: true,
-          token: token,
+          token: 'simple-token-123',
           user: { username: 'admin', role: 'superadmin' }
         });
       } else {
-        res.status(401).json({ 
-          success: false, 
-          message: 'Username atau password salah' 
+        res.status(401).json({
+          success: false,
+          message: 'Username atau password salah'
         });
       }
     } catch (error) {
-      res.status(500).json({ 
-        success: false, 
-        message: error.message 
+      res.status(500).json({
+        success: false,
+        message: 'Server error: ' + error.message
       });
     }
   } else {
