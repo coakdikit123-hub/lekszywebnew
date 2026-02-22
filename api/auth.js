@@ -4,11 +4,13 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  // Handle preflight
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
 
+  // Handle POST request to /api/auth (login)
   if (req.method === 'POST') {
     try {
       // Parse body manual
@@ -38,7 +40,24 @@ module.exports = async (req, res) => {
         message: 'Server error: ' + error.message
       });
     }
-  } else {
-    res.status(404).json({ success: false, message: 'Not found' });
+    return;
   }
+
+  // Handle GET request (untuk testing)
+  if (req.method === 'GET') {
+    res.status(200).json({
+      success: true,
+      message: 'Auth API is working',
+      endpoints: {
+        login: 'POST /api/auth with username/password'
+      }
+    });
+    return;
+  }
+
+  // Jika method lain
+  res.status(404).json({ 
+    success: false, 
+    message: 'Method not supported' 
+  });
 };
