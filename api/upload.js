@@ -1,32 +1,22 @@
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 
-// Configure multer for memory storage
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|gif|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
-      cb(new Error('Only image files are allowed'));
-    }
-  }
-});
-
-const verifyToken = (token) => {
+function verifyToken(token) {
   try {
     return jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
   } catch (error) {
     return null;
   }
-};
+}
+
+function getBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +25,11 @@ module.exports = async (req, res) => {
 
   if (req.method === 'OPTIONS') {
     res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'POST') {
+    res.status(405).json({ success: false, message: 'Method not allowed' });
     return;
   }
 
@@ -47,38 +42,23 @@ module.exports = async (req, res) => {
     return;
   }
 
-  if (req.method === 'POST') {
-    // Handle file upload with multer
-    upload.single('image')(req, res, async (err) => {
-      if (err) {
-        return res.status(400).json({ success: false, message: err.message });
-      }
-
-      try {
-        if (!req.file) {
-          return res.status(400).json({ success: false, message: 'No file uploaded' });
-        }
-
-        // In Vercel, we can't save files permanently
-        // We need to use a cloud storage service like Cloudinary, AWS S3, etc.
-        // For now, we'll return the file as base64
-        
-        const base64Image = req.file.buffer.toString('base64');
-        const mimeType = req.file.mimetype;
-        const imageUrl = `data:${mimeType};base64,${base64Image}`;
-
-        res.status(200).json({
-          success: true,
-          message: 'File uploaded successfully',
-          imageUrl: imageUrl,
-          filename: req.file.originalname
-        });
-
-      } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-      }
+  try {
+    // Di Vercel, file upload memerlukan cloud storage
+    // Untuk demo, kita generate URL dummy
+    const body = await getBody(req);
+    const { filename, type } = JSON.parse(body);
+    
+    // Generate dummy image URL (dalam production, upload ke cloud storage)
+    const imageUrl = `https://placehold.co/600x400?text=${encodeURIComponent(filename || 'Image')}`;
+    
+    res.status(200).json({
+      success: true,
+      message: 'File uploaded successfully (simulasi)',
+      imageUrl: imageUrl,
+      filename: filename || 'image.jpg'
     });
-  } else {
-    res.status(405).json({ success: false, message: 'Method not allowed' });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
