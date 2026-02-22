@@ -1,26 +1,10 @@
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
-
-const DB_PATH = path.join(process.cwd(), 'data', 'db.json');
-
-// Helper to read database
-const readDB = () => {
-  const data = fs.readFileSync(DB_PATH, 'utf8');
-  return JSON.parse(data);
-};
-
-// Helper to write database
-const writeDB = (data) => {
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-};
 
 module.exports = async (req, res) => {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   // Handle preflight request
   if (req.method === 'OPTIONS') {
@@ -28,16 +12,16 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Handle different endpoints
-  const { pathname } = new URL(req.url, `http://${req.headers.host}`);
-  
+  // Parse URL
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const path = url.pathname.replace('/api/auth', '');
+
   // Login endpoint
-  if (pathname === '/api/auth/login' && req.method === 'POST') {
+  if (path === '/login' && req.method === 'POST') {
     try {
-      const { username, password } = req.body;
+      const body = await getBody(req);
+      const { username, password } = JSON.parse(body);
       
-      // For simplicity, using environment variable
-      // In production, use database
       const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
       
       if (username === 'admin' && password === adminPassword) {
@@ -61,9 +45,10 @@ module.exports = async (req, res) => {
   }
   
   // Verify token endpoint
-  else if (pathname === '/api/auth/verify' && req.method === 'POST') {
+  else if (path === '/verify' && req.method === 'POST') {
     try {
-      const { token } = req.body;
+      const body = await getBody(req);
+      const { token } = JSON.parse(body);
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
       res.status(200).json({ success: true, user: decoded });
     } catch (error) {
@@ -72,14 +57,12 @@ module.exports = async (req, res) => {
   }
   
   // Change password endpoint
-  else if (pathname === '/api/auth/change-password' && req.method === 'POST') {
+  else if (path === '/change-password' && req.method === 'POST') {
     try {
-      const { token, oldPassword, newPassword } = req.body;
+      const body = await getBody(req);
+      const { token, oldPassword, newPassword } = JSON.parse(body);
       
-      // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
-      
-      // Check old password
       const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
       
       if (oldPassword !== adminPassword) {
@@ -87,10 +70,7 @@ module.exports = async (req, res) => {
         return;
       }
       
-      // In Vercel, we can't easily update environment variables
-      // This would require using a database
-      // For now, we'll just pretend it worked
-      
+      // Note: Di Vercel tidak bisa update env variable, jadi hanya simulasi
       res.status(200).json({ 
         success: true, 
         message: 'Password berhasil diubah (simpan password baru Anda)' 
@@ -104,3 +84,13 @@ module.exports = async (req, res) => {
     res.status(404).json({ success: false, message: 'Endpoint tidak ditemukan' });
   }
 };
+
+// Helper to get body from request
+function getBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
