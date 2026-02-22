@@ -1,5 +1,5 @@
 module.exports = async (req, res) => {
-  // Set CORS
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -10,9 +10,10 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Handle POST (login)
+  // Handle POST request (login)
   if (req.method === 'POST') {
     try {
+      // Parse body manual
       let body = '';
       for await (const chunk of req) {
         body += chunk;
@@ -20,6 +21,7 @@ module.exports = async (req, res) => {
       
       const { username, password } = JSON.parse(body);
       
+      // Hardcoded credentials untuk test
       if (username === 'admin' && password === 'admin123') {
         res.status(200).json({
           success: true,
@@ -41,7 +43,7 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Handle GET (testing)
+  // Handle GET request (testing)
   if (req.method === 'GET') {
     res.status(200).json({
       success: true,
